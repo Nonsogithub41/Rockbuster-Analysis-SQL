@@ -1,0 +1,21 @@
+-- Top 10 cities of the top 10 countries
+SELECT city AS "City",
+       COUNT(customer.customer_id) AS "Customer Count"
+FROM customer
+JOIN address ON customer.address_id = address.address_id
+JOIN city ON address.city_id = city.city_id
+-- JOIN country ON city.country_id = country.country_id
+JOIN (
+    SELECT country.country_id, -- Provide table alias for country_id
+           COUNT(customer.customer_id) AS "Customer Count"
+    FROM customer
+    JOIN address ON customer.address_id = address.address_id
+    JOIN city ON address.city_id = city.city_id
+    JOIN country ON city.country_id = country.country_id
+    GROUP BY country.country_id -- Use table alias for country_id
+    ORDER BY "Customer Count" DESC
+    LIMIT 10
+) sub_country ON sub_country.country_id = city.country_id
+GROUP BY city
+ORDER BY "Customer Count" DESC
+LIMIT 10;
