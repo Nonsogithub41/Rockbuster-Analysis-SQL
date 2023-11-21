@@ -1,4 +1,6 @@
 ...Find average amount paid by the top 5 customers.
+-- The CTE (Common Table Expression) calculates the total amount paid by each customer in the top 10 cities of the top 10 countries.
+
 WITH avg_amount_paid_cte as (
     SELECT 
         c.customer_id AS "customer ID",
@@ -42,5 +44,7 @@ WITH avg_amount_paid_cte as (
     ORDER BY "Total Amount Paid" DESC
     LIMIT 5
 )
+
+-- This final SELECT statement computes the average amount paid by the top 5 customers identified in the CTE.
 SELECT AVG("Total Amount Paid") AS "Average Amount Paid"
 FROM avg_amount_paid_cte;
