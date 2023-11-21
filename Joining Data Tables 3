@@ -1,0 +1,49 @@
+-- Top 5 customers from the top 10 cities of the top 10 countries who have paid the highest amounts.
+SELECT 
+    c.customer_id AS "customer ID",
+    c.first_name AS "first_Name",
+    c.last_name AS "Last Name",
+    co.country AS "country",
+    ci.city AS "city",
+    SUM(p.amount) AS "Total Amount Paid"
+FROM customer c
+JOIN address a ON c.address_id = a.address_id
+--JOIN city ci ON a.city_id = ci.city_id
+--JOIN country co ON ci.country_id = co.country_id
+JOIN payment p ON c.customer_id = p.customer_id
+
+-- This subquery identifies the top 10 cities in terms of customer count from the top 10 countries.
+JOIN (
+    SELECT city.city_id, 
+           COUNT(customer.customer_id) AS "Customer Count"
+    FROM customer
+    JOIN address ON customer.address_id = address.address_id
+    JOIN city ON address.city_id = city.city_id
+
+----Subquery of the top 10 countries
+    JOIN (
+        SELECT country.country_id,
+               COUNT(customer_id) AS "Customer Count"
+        FROM customer
+        JOIN address ON customer.address_id = address.address_id
+        JOIN city ON address.city_id = city.city_id
+        JOIN country ON city.country_id = country.country_id
+        GROUP BY country.country_id
+        ORDER BY "Customer Count" DESC
+        LIMIT 10
+    ) sub_country ON sub_country.country_id = city.country_id
+    GROUP BY city.city_id
+    ORDER BY "Customer Count" DESC
+    LIMIT 10
+) sub_topcity ON sub_topcity.city_id = a.city_id
+
+-- The main query then aggregates payment amounts for customers in these cities, ranking the top 5 customers by total amount paid.
+GROUP BY 
+    c.customer_id,
+    c.first_name,
+    c.last_name,
+    co.country,
+    ci.city
+ORDER BY "Total Amount Paid" DESC
+LIMIT 5;
+
