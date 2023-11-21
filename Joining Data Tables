@@ -1,0 +1,12 @@
+-- Summarizes customer counts by country, displaying the top 10 countries with the most customers.
+SELECT country AS "Country",
+ COUNT(customer_id) AS "Customer Count"
+FROM customer
+JOIN address ON customer.address_id = address.address_id
+JOIN city ON address.city_id = city.city_id
+JOIN country ON city.country_id = country.country_id
+GROUP BY  country
+ORDER BY "Customer Count" DESC
+LIMIT 10;
+
+
