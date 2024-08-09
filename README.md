@@ -26,7 +26,7 @@ The dataset comprises of the following tables:
 
 Data is provided by careerfoundry and is available [here](http://www.postgresqltutorial.com/wp-content/uploads/2019/05/dvdrental.zip)
 
-[Tableau Visualizations](https://public.tableau.com/app/profile/nonso.ezeoma/viz/Top10Rockbustercustomercountries/Sheet1)(https://public.tableau.com/app/profile/nonso.ezeoma/viz/RockbustercustomerpaymentbyCountry/Sheet1)(https://public.tableau.com/app/profile/nonso.ezeoma/viz/Top10RevenueGeneratingMovie/Toptengeneratingmovies)(https://public.tableau.com/app/profile/nonso.ezeoma/viz/Totalamountpaidingeographicalregions/Sheet1)
+[Tableau Visualizations](https://public.tableau.com/app/profile/nonso.ezeoma/vizzes)
   
 
 
