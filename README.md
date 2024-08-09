@@ -24,11 +24,16 @@ The dataset comprises of the following tables:
 - Category
 - Language
 
+  **Data is provided by careerfoundry and is available [here](http://www.postgresqltutorial.com/wp-content/uploads/2019/05/dvdrental.zip)
+  
+
 
 ## Tools
 For this project, the following tools were used: 
 - PGSQL - For dataset analysis
 - Tableau - For Visualization
+- Powerpoint
+- Excel 
 
 
 ## Executing the code
